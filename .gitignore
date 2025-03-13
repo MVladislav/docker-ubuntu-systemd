@@ -1,0 +1,25 @@
+# Ignore .hidden files
+.*
+# Ignore everything
+*
+
+!.github/
+!.github/**
+
+!.gitattributes
+!.gitignore
+!.gitempty
+
+!CONTRIBUTING.md
+!LICENCE
+!SECURITY.md
+
+!README.md
+
+!.pre-commit-config.yaml
+!.prettierrc.yml
+!.yamllint
+
+!.dockerignore
+!docker-*
+!Dockerfile
