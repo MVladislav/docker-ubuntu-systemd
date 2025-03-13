@@ -28,6 +28,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # Install packages and configure system
 RUN apt-get update -q && \
+    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
       sudo \
       systemd \
