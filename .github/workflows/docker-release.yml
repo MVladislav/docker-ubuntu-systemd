@@ -28,14 +28,14 @@ jobs:
 
     steps:
       # https://github.com/actions/checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Get current date
         id: date
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       # https://github.com/docker/metadata-action
-      - name: Extract Docker metadata
+      - name: Extract Docker metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -71,13 +71,14 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          # platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64 # ,linux/arm64,linux/arm/v7
           build-args: |
             BUILD_DATE=${{ steps.date.outputs.DATE }}
             VERSION_UBUNTU=${{ matrix.version }}
             PYTHON_ARGS=${{ matrix.version > '22.04' && '--break-system-packages' || '' }}
+            BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
             VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
             REVISION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.revision'] }}

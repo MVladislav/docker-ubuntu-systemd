@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "commitMessagePrefix": "🚀",
   "configMigration": true,
-  "dependencyDashboard": true,
+  "dependencyDashboard": false,
   "labels": ["dependencies", "no-stale"],
   "lockFileMaintenance": {
     "enabled": true
@@ -13,20 +13,26 @@
       "addLabels": ["github_actions"],
       "matchManagers": ["github-actions"],
       "rangeStrategy": "pin",
-      "groupName": "GitHub Actions"
+      "groupName": "GitHub Actions",
+      "automerge": false
     },
     {
       "addLabels": ["docker"],
       "matchManagers": ["dockerfile"],
+      "rangeStrategy": "pin",
       "groupName": "Docker updates",
       "automerge": false
     },
     {
       "addLabels": ["pre-commit"],
       "matchManagers": ["pre-commit"],
+      "rangeStrategy": "pin",
       "groupName": "Pre-commit hooks",
       "automerge": false
     }
   ],
+  "pre-commit": {
+    "enabled": true
+  },
   "rebaseWhen": "behind-base-branch"
 }

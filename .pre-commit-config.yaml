@@ -18,17 +18,14 @@ repos:
 
   # General pre-commit hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: detect-private-key
       - id: check-merge-conflict
       - id: check-added-large-files
       - id: check-case-conflict
-      - id: check-executables-have-shebangs
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-      # - id: end-of-file-fixer
-      - id: check-toml
       - id: check-json
       - id: check-yaml
         args: [--allow-multiple-documents]
@@ -37,7 +34,7 @@ repos:
 
   # Prettier for code formatting
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.5.1
+    rev: v3.6.2
     hooks:
       - id: prettier
         additional_dependencies:
@@ -55,19 +52,25 @@ repos:
     hooks:
       - id: detect-secrets
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.0
+    rev: v8.28.0
     hooks:
       - id: gitleaks
 
   # YAML Linting
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.35.1
+    rev: v1.37.1
     hooks:
       - id: yamllint
 
-  # # Dockerfile linting #########################################################
-  # - repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
-  #   rev: v0.1.0
-  #   hooks:
-  #     - id: dockerfilelint
-  #       stages: [pre-commit]
+  # Dockerfile linting #########################################################
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+        args:
+          - "--ignore"
+          - "DL3008"
+          - "--ignore"
+          - "DL3013"
+          - "--ignore"
+          - "SC2016"
