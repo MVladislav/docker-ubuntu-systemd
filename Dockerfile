@@ -1,4 +1,4 @@
-ARG VERSION_UBUNTU=25.04
+ARG VERSION_UBUNTU=plucky-20250910
 FROM ubuntu:${VERSION_UBUNTU}
 
 # ------------------------------------------------------------------------------
