@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ["22.04", "24.04", "25.04", "25.10"]
+        version: ["22.04", "24.04", "26.04"]
 
     steps:
       # https://github.com/actions/checkout
@@ -47,7 +47,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}-${{ matrix.version }}
             type=semver,pattern={{major}}-${{ matrix.version }}
           flavor: |
-            latest=${{ matrix.version == '25.04' && 'auto' || 'false' }}
+            latest=${{ matrix.version == '26.04' && 'auto' || 'false' }}
 
       # https://github.com/docker/setup-qemu-action
       - name: Set up QEMU
