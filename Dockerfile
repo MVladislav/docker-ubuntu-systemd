@@ -1,4 +1,4 @@
-ARG VERSION_UBUNTU=resolute-20260627
+ARG VERSION_UBUNTU=resolute-20260707
 FROM ubuntu:${VERSION_UBUNTU}
 
 # ------------------------------------------------------------------------------
